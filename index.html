@@ -63,7 +63,6 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
 
-    /* Painel de Estatísticas Otimizado para Mobile */
     .stats-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -90,7 +89,6 @@
       color: var(--accent);
     }
 
-    /* Loja / Upgrades Compactos */
     .shop-section h3 {
       font-size: 0.85rem;
       margin-bottom: 6px;
@@ -151,7 +149,6 @@
       color: #94a3b8;
     }
 
-    /* Área de Jogo (Fábrica / Tela Reduzida para Celular) */
     .factory-area {
       display: flex;
       flex-direction: column;
@@ -180,7 +177,49 @@
       padding: 0 10px;
     }
 
-    /* Botão Principal Gigante Adaptado para Toque */
+    /* Tela flutuante integrada para exibir a frase de saque */
+    .bank-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      text-align: center;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .bank-screen.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .bank-text {
+      font-size: 0.95rem;
+      color: #f8fafc;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .bank-close-btn {
+      background: var(--primary);
+      color: #0f172a;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
     .btn-create {
       background: var(--primary);
       color: #0f172a;
@@ -200,7 +239,6 @@
       background: var(--primary-hover);
     }
 
-    /* Botões criados gerados dentro da tela mobile */
     .spawned-button {
       position: absolute;
       padding: 6px 10px;
@@ -228,7 +266,6 @@
   </header>
 
   <div class="game-container">
-    <!-- Estatísticas em Grid compacto -->
     <div class="stats-grid">
       <div class="stats-box">
         <h2>Seus Lucros</h2>
@@ -240,7 +277,6 @@
       </div>
     </div>
 
-    <!-- Painel da Loja -->
     <div class="shop-section">
       <h3>Loja & Automação</h3>
       <div class="shop-items">
@@ -279,7 +315,6 @@
           <span class="upgrade-desc">Multiplica o valor de cada botão.</span>
         </button>
 
-        <!-- Botão de Sacar Dinheiro -->
         <button class="upgrade-btn" id="upgradeSacar" onclick="sacarDinheiro()" style="background: #065f46;">
           <span class="upgrade-title"><span>Sacar Dinheiro (Nubank)</span></span>
           <span class="upgrade-desc">Tenta transferir os lucros para o banco.</span>
@@ -287,19 +322,22 @@
       </div>
     </div>
 
-    <!-- Área Principal de Produção -->
     <div class="factory-area">
       <div class="factory-screen" id="factoryScreen">
         <span class="factory-placeholder" id="placeholderText">Os botões gerados aparecerão aqui...</span>
+        
+        <!-- Tela interna que aparece quando o botão de saque é acionado -->
+        <div class="bank-screen" id="bankScreen">
+          <div class="bank-text">Ah, se fosse tão fácil assim, nós dois já estaríamos milionários gerando botões! 😂</div>
+          <button class="bank-close-btn" onclick="fecharTelaSaque()">Voltar ao Jogo</button>
+        </div>
       </div>
 
-      <!-- Botão principal de ação manual otimizado para toque -->
       <button class="btn-create" onclick="spawnButtonManual()">Criar Botão 🛠️</button>
     </div>
   </div>
 
   <script>
-    // Estado do Jogo
     let game = {
       money: 0,
       totalButtons: 0,
@@ -320,7 +358,6 @@
       }
     };
 
-    // Cores aleatórias e estilos de botões
     const buttonStyles = [
       { bg: '#38bdf8', color: '#0f172a', radius: '4px' },
       { bg: '#10b981', color: '#ffffff', radius: '8px' },
@@ -329,11 +366,11 @@
       { bg: '#8b5cf6', color: '#ffffff', radius: '2px' }
     ];
 
-    // Elementos da interface
     const moneyDisplay = document.getElementById('moneyDisplay');
     const buttonsCount = document.getElementById('buttonsCount');
     const factoryScreen = document.getElementById('factoryScreen');
     const placeholderText = document.getElementById('placeholderText');
+    const bankScreen = document.getElementById('bankScreen');
 
     const costClick = document.getElementById('costClick');
     const costAuto = document.getElementById('costAuto');
@@ -390,7 +427,6 @@
       btnEl.style.color = styleConfig.color;
       btnEl.style.borderRadius = styleConfig.radius;
 
-      // Posição segura para telas mobile menores
       const maxX = Math.max(10, factoryScreen.clientWidth - 80);
       const maxY = Math.max(10, factoryScreen.clientHeight - 30);
       const randomX = Math.floor(Math.random() * maxX);
@@ -404,7 +440,7 @@
         if (factoryScreen.contains(btnEl)) {
           factoryScreen.removeChild(btnEl);
         }
-        if (factoryScreen.children.length <= 1) {
+        if (factoryScreen.children.length <= 2) { // 2 considerando o placeholder e a tela do banco
           placeholderText.style.display = 'block';
         }
         updateUI();
@@ -412,9 +448,8 @@
 
       factoryScreen.appendChild(btnEl);
 
-      // Limita a quantidade de botões para não sobrecarregar o celular
-      if (factoryScreen.children.length > 25) {
-        factoryScreen.removeChild(factoryScreen.children[1]);
+      if (factoryScreen.children.length > 27) {
+        factoryScreen.removeChild(factoryScreen.children[2]);
       }
     }
 
@@ -467,10 +502,13 @@
     }
 
     function sacarDinheiro() {
-      alert("Ah, se fosse tão fácil assim, nós dois já estaríamos milionários gerando botões! 😂");
+      bankScreen.classList.add('active');
     }
 
-    // Loop de Automação
+    function fecharTelaSaque() {
+      bankScreen.classList.remove('active');
+    }
+
     setInterval(() => {
       if (game.autoRate > 0) {
         for (let i = 0; i < game.autoRate; i++) {
