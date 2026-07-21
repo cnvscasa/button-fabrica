@@ -37,62 +37,104 @@
 
     header {
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     header h1 {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: var(--primary);
       margin-bottom: 2px;
     }
 
     header p {
       color: #94a3b8;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
     }
 
     .game-container {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       width: 100%;
       max-width: 480px;
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 12px;
+      padding: 10px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
 
     .stats-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      gap: 6px;
     }
 
     .stats-box {
       background: rgba(15, 23, 42, 0.6);
-      padding: 10px;
+      padding: 8px;
       border-radius: 8px;
       border: 1px solid var(--border);
       text-align: center;
     }
 
     .stats-box h2 {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #cbd5e1;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .stats-value {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: bold;
       color: var(--accent);
     }
 
+    /* Seletor de Design / Estilo Gráfico do Botão */
+    .style-selector-section {
+      background: rgba(15, 23, 42, 0.4);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 8px;
+    }
+
+    .style-selector-section h3 {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .style-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+    }
+
+    .style-opt-btn {
+      background: #1e293b;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 2px;
+      font-size: 0.7rem;
+      color: #cbd5e1;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .style-opt-btn.selected {
+      background: var(--primary);
+      color: #0f172a;
+      border-color: var(--primary);
+      font-weight: bold;
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+    }
+
     .shop-section h3 {
-      font-size: 0.85rem;
-      margin-bottom: 6px;
+      font-size: 0.8rem;
+      margin-bottom: 4px;
       color: #94a3b8;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -101,8 +143,8 @@
     .shop-items {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      max-height: 180px;
+      gap: 5px;
+      max-height: 140px;
       overflow-y: auto;
       padding-right: 2px;
     }
@@ -120,13 +162,13 @@
       background: #334155;
       color: #fff;
       border: none;
-      padding: 8px 10px;
+      padding: 6px 8px;
       border-radius: 6px;
       text-align: left;
       cursor: pointer;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 1px;
       transition: background 0.1s;
     }
 
@@ -141,25 +183,25 @@
 
     .upgrade-title {
       font-weight: bold;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       display: flex;
       justify-content: space-between;
     }
 
     .upgrade-desc {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       color: #94a3b8;
     }
 
     .factory-area {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
 
     .factory-screen {
       width: 100%;
-      height: 220px;
+      height: 200px;
       background: #090d16;
       border: 2px dashed var(--border);
       border-radius: 8px;
@@ -172,13 +214,12 @@
 
     .factory-placeholder {
       color: #475569;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       text-align: center;
       pointer-events: none;
       padding: 0 10px;
     }
 
-    /* Tela flutuante com caixa de diálogo estilizada */
     .bank-screen {
       position: absolute;
       top: 0;
@@ -202,7 +243,6 @@
       pointer-events: auto;
     }
 
-    /* Caixa que envolve o texto e o botão */
     .bank-box {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -234,17 +274,13 @@
       cursor: pointer;
     }
 
-    .bank-close-btn:active {
-      background: var(--primary-hover);
-    }
-
     .btn-create {
       background: var(--primary);
       color: #0f172a;
       border: none;
       border-radius: 10px;
-      padding: 14px;
-      font-size: 1.1rem;
+      padding: 12px;
+      font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4);
@@ -258,21 +294,64 @@
       background: var(--primary-hover);
     }
 
+    /* Designs Gráficos Avançados para os Botões Gerados */
     .spawned-button {
       position: absolute;
-      padding: 6px 10px;
-      font-size: 0.65rem;
+      padding: 8px 12px;
+      font-size: 0.7rem;
       font-weight: bold;
-      border-radius: 4px;
-      border: none;
       cursor: pointer;
       animation: popIn 0.2s ease-out forwards;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    /* Estilo 1: Neon Moderno */
+    .style-neon {
+      background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+      color: #0f172a;
+      border: 1px solid #7dd3fc;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.6), inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    /* Estilo 2: Cyberpunk / Gaming */
+    .style-cyber {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      border-left: 3px solid #f59e0b;
+      border-top: none; border-right: none; border-bottom: none;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+      text-transform: uppercase;
+    }
+
+    /* Estilo 3: Glassmorphism Translúcido */
+    .style-glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      color: #f8fafc;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Estilo 4: Retro 3D Clássico */
+    .style-retro {
+      background: linear-gradient(to bottom, #f59e0b, #d97706);
+      color: #ffffff;
+      border: 2px solid #b45309;
+      border-radius: 6px;
+      box-shadow: 0 3px 0 #92400e, 0 4px 6px rgba(0,0,0,0.3);
+      text-shadow: 0 1px 1px rgba(0,0,0,0.5);
     }
 
     @keyframes popIn {
       0% { transform: scale(0); opacity: 0; }
-      80% { transform: scale(1.1); opacity: 1; }
+      80% { transform: scale(1.15); opacity: 1; }
       100% { transform: scale(1); opacity: 1; }
     }
   </style>
@@ -293,6 +372,17 @@
       <div class="stats-box">
         <h2>Botões</h2>
         <div class="stats-value" id="buttonsCount" style="color: var(--primary);">0</div>
+      </div>
+    </div>
+
+    <!-- Seletor de Design Gráfico -->
+    <div class="style-selector-section">
+      <h3>Design Gráfico do Botão</h3>
+      <div class="style-options">
+        <button class="style-opt-btn selected" id="opt-neon" onclick="setButtonStyle('neon')">Neon</button>
+        <button class="style-opt-btn" id="opt-cyber" onclick="setButtonStyle('cyber')">Cyber</button>
+        <button class="style-opt-btn" id="opt-glass" onclick="setButtonStyle('glass')">Glass</button>
+        <button class="style-opt-btn" id="opt-retro" onclick="setButtonStyle('retro')">Retro</button>
       </div>
     </div>
 
@@ -345,7 +435,6 @@
       <div class="factory-screen" id="factoryScreen">
         <span class="factory-placeholder" id="placeholderText">Os botões gerados aparecerão aqui...</span>
         
-        <!-- Tela com a caixa de diálogo centralizada -->
         <div class="bank-screen" id="bankScreen">
           <div class="bank-box">
             <div class="bank-text">Ah, se fosse tão fácil assim, nós dois já estaríamos milionários gerando botões! 😂</div>
@@ -367,6 +456,7 @@
       buttonValue: 1,
       critChance: 0,
       multiBonus: 1,
+      selectedStyle: 'neon', // Estilo padrão selecionado
       
       costs: {
         click: 15,
@@ -378,14 +468,6 @@
         multi: 1200
       }
     };
-
-    const buttonStyles = [
-      { bg: '#38bdf8', color: '#0f172a', radius: '4px' },
-      { bg: '#10b981', color: '#ffffff', radius: '8px' },
-      { bg: '#f59e0b', color: '#ffffff', radius: '20px' },
-      { bg: '#ec4899', color: '#ffffff', radius: '10px' },
-      { bg: '#8b5cf6', color: '#ffffff', radius: '2px' }
-    ];
 
     const moneyDisplay = document.getElementById('moneyDisplay');
     const buttonsCount = document.getElementById('buttonsCount');
@@ -408,6 +490,16 @@
     const upgradeAIBtn = document.getElementById('upgradeAI');
     const upgradeCritBtn = document.getElementById('upgradeCrit');
     const upgradeMultiBtn = document.getElementById('upgradeMulti');
+
+    function setButtonStyle(styleName) {
+      game.selectedStyle = styleName;
+      
+      // Atualiza visual dos botões de seleção de design
+      document.querySelectorAll('.style-opt-btn').forEach(btn => {
+        btn.classList.remove('selected');
+      });
+      document.getElementById(`opt-${styleName}`).classList.add('selected');
+    }
 
     function updateUI() {
       moneyDisplay.innerText = `R$ ${game.money.toFixed(2)}`;
@@ -440,16 +532,11 @@
       }
 
       const btnEl = document.createElement('button');
-      btnEl.className = 'spawned-button';
-      btnEl.innerText = `btn-${game.totalButtons}`;
+      btnEl.className = `spawned-button style-${game.selectedStyle}`;
+      btnEl.innerText = `⚡ btn-${game.totalButtons}`;
 
-      const styleConfig = buttonStyles[Math.floor(Math.random() * buttonStyles.length)];
-      btnEl.style.backgroundColor = styleConfig.bg;
-      btnEl.style.color = styleConfig.color;
-      btnEl.style.borderRadius = styleConfig.radius;
-
-      const maxX = Math.max(10, factoryScreen.clientWidth - 70);
-      const maxY = Math.max(10, factoryScreen.clientHeight - 30);
+      const maxX = Math.max(10, factoryScreen.clientWidth - 80);
+      const maxY = Math.max(10, factoryScreen.clientHeight - 35);
       const randomX = Math.floor(Math.random() * maxX);
       const randomY = Math.floor(Math.random() * maxY);
 
